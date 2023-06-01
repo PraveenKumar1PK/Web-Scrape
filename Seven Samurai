@@ -1,0 +1,9 @@
+import requests 
+from bs4 import BeautifulSoup  
+def getdata(url): 
+    r = requests.get(url) 
+    return r.text
+htmldata = getdata("https://www.google.com/search?q=seven+samurai+best+shots&sxsrf=APwXEddTnaI98m5u88wSxYMASf5iCEvWlQ:1685616042842&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjH_teL8aH_AhX2-jgGHSEZCIIQ_AUoAXoECAEQAw&biw=1536&bih=746&dpr=1.25") 
+soup = BeautifulSoup(htmldata, 'html.parser') 
+for item in soup.find_all('img'):
+    print(item['src'])
